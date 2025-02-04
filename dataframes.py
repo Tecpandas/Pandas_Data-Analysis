@@ -1,4 +1,11 @@
+
+
+
+
+
 import pandas as pd
+import numpy as np
+
 
 df = pd.DataFrame({
     "name": [
@@ -21,18 +28,66 @@ df = pd.DataFrame({
         "warangal", "bareilly", "moradabad", "guntur", "bikaner",
         "noida", "jamshedpur", "bhilai", "cuttack", "firozabad"
     ],
-    "mark": [
-        34, 56, 78, 68, 45,
-        76, 89, 91, 82, 67,
-        55, 72, 88, 94, 60,
-        85, 47, 92, 79, 53,
-        69, 81, 95, 63, 77,
-        50, 86, 99, 74, 58,
-        83, 64, 90, 87, 71,
-        62, 80, 98, 66, 57
-    ]
+    #randint genertate the random some number to some number with some size
+   "mark": np.random.randint(30, 100, size=40),
+    "age": np.random.randint(18, 30, size=40),
+    "attendance": np.random.randint(50, 100, size=40)
 })
 
+# Data Cleaning
+# 
+df.drop_duplicates(inplace=True)
+print(df.head())
+#sure the datatype
+newset=df["mark"]=df["mark"].astype(int)
+print(newset)
+newset2=df["age"]=df['age'].astype(int)
+print(newset2)
+newset3=df['attendance']=df['attendance'].astype(int)
+print(newset3)
+df["performance_category"] = pd.cut(df["mark"], bins=[0, 50, 75, 100], labels=["Low", "Medium", "High"])
 print(df)
-#to conver csv
-df.to_csv('df.csv')
+
+#Calculate the mean, median, and standard deviation of marks and attendance.
+mean_age=df['mark'].mean()
+print(mean_age)
+mean_age=df['age'].mean()
+print(mean_age)
+mean_attendance=df['attendance'].mean()
+print(mean_attendance)
+#median
+median_mark=df['mark'].median()
+print(median_mark)
+median_age=df['age'].median()
+print(median_age)
+median_attendance=df['attendance'].median()
+print(median_attendance)
+#sd
+sd_mark=df['mark'].std()
+print(sd_mark)
+sd_age=df['age'].std()
+print(sd_age)
+sd_attendance=df['attendance'].std()
+print(sd_attendance)
+#calculate the lowest and highest marks
+low_mark=df['mark'].min()
+print(low_mark)
+high_marks=df['mark'].max()
+print(high_marks)
+#students who scored more than 80 marks.
+score_mark=df[df['mark']>80]
+print(score_mark)
+#List students with attendance below 60%.
+av_attend=df[df['attendance']<60]
+print(av_attend)
+#Sort the dataset by marks in asecending order.
+descending_order=df['mark'].sort_values()
+print(descending_order)
+#Find the average mark per city.
+avg_mark=df.groupby('city')['mark'].mean()
+print(avg_mark)
+#Count the number of students in each performance category.
+performance_category=df.groupby(["mark", "attendance", "age"])["name"].count()
+
+print(performance_category)
+
