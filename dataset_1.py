@@ -90,4 +90,31 @@ print(avg_mark)
 performance_category=df.groupby(["mark", "attendance", "age"])["name"].count()
 
 print(performance_category)
-
+# Find the top 5 students based on marks.
+top_five=df['mark'].head()
+print(top_five)
+        #Identify students who are below 20 years old and have marks above 70.
+id_mark = df[(df['age'] < 20) & (df['mark'] > 70)]
+print(id_mark)
+#
+#Retrieve students who scored between 50 and 80 marks 
+mid_marks=df[(df["mark"]<50) & (df['mark']>80)]
+print(mid_marks)
+#List students who have both attendance below 50% and marks below 40 (at-risk students).
+both_catergory=df[(df["attendance"]>50)&(df['mark']>40)]
+print(both_catergory)
+sorted=df.sort_values(by='attendance',ascending=True)
+print(sorted)
+# students into performance levels 
+import matplotlib.pyplot as plt
+x=(df['mark']).head()
+y=df['name'].head()
+plt.xlabel("Name of students  mark")
+plt.ylabel('Name of students')
+plt.plot(x,y)
+plt.show()
+#using pie chart show student performance
+x=df["performance_category"]
+y=df['city']
+plt.bar(x,y)
+plt.show()
