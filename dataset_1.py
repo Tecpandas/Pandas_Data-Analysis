@@ -118,3 +118,17 @@ x=df["performance_category"]
 y=df['city']
 plt.bar(x,y)
 plt.show()
+# Create a histogram of marks.
+xaxis=df['mark']
+plt.hist(xaxis)
+plt.show()
+
+# bar chart showing average marks per city.
+bar_chart=df.groupby('city')['mark'].mean()
+plt.bar(bar_chart.index, bar_chart.values,width=0.5)
+plt.show()
+#scatter plot between age and marks to analyze trends.
+x1=df["mark"]
+y2=df['age']
+plt.scatter(x1,y2)
+plt.show()

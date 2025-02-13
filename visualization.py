@@ -28,3 +28,18 @@ df = pd.DataFrame({
     "age": np.random.randint(18, 30, size=40),
     "attendance": np.random.randint(50, 100, size=40)
 })
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#Box plot of marks to analyze outliers.
+x=df['mark']
+plt.boxplot(x)
+plt.show()
+
+#Heatmap to show correlation between marks, attendance, and age.
+corr_matrix=df.corr()
+plt.figure(figsize=(6,4))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+plt.show()
+

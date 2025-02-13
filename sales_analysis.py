@@ -20,4 +20,3 @@ new.columns = new.columns.str.strip()
 print(new["Sales"].isnull().sum())
 top_products = new.groupby('ProductName')['Sales'].sum().sort_values(ascending=False).head(10)
 print(top_products)
-##
