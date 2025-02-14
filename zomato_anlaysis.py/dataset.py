@@ -25,8 +25,31 @@ print(df.to_string())
 # convert the data type of the “rate” column to float and remove the denominator
 conv=df['Rating']=df['Rating'].astype(float)
 print(conv)
-x=df['Cuisine']
-y=df['Restaurant Name']
-plt.bar(x,y)
+#x=df['Cuisine']
+#y=df['Restaurant Name']
+#plt.bar(x,y)
+#plt.show()
+#df3=df['Rating'].sum()
+#print(df3)
+xpoint=df['Restaurant Name']
+ypoint=df['Rating']
+plt.figure(figsize=(10, 5))
+plt.plot(xpoint,ypoint,linestyle='dotted')
+plt.xlabel("Restaurant Name")
+plt.ylabel("Rating")
+plt.title("Restaurant Ratings")
+plt.xticks(rotation=45)
 plt.show()
-
+plt.hist(df['Rating'],bins=5)
+plt.title('Ratings Distribution')
+plt.show()
+count_cost=df['Price for Two']
+sns.countplot(x=count_cost)
+sns.countplot(x=df['Number of Reviews'])
+plt.show()
+pivot_table = df.pivot_table(index='listed_in(type)', columns='online_order', aggfunc='size', fill_value=0)
+sns.heatmap(pivot_table, annot=True, cmap='YlGnBu', fmt='d')
+plt.title('Heatmap')
+plt.xlabel('Online Order')
+plt.ylabel('Listed In (Type)')
+plt.show()
